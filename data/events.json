@@ -1,0 +1,128 @@
+{
+  "2c5c42e821614d48bd6f5b390a8eb4b8": {
+    "guild_id": 976227383222882314,
+    "channel_id": 1528865872020508782,
+    "message_id": 1531081808563667176,
+    "creator_id": "226851138954199040",
+    "creator_name": "Carrusso",
+    "title": "PRIMEIRA NODE DA HAUNTED - T1 - 29/07/2026",
+    "description": "PRIMEIRA NODEWAR DA GUILDA, VAMOS POR MAIS! BROXAS!",
+    "start": "29/07/2026 21:00",
+    "rsvp_close": "29/07/2026 22:00",
+    "max_participants": 25,
+    "roles_config": [
+      {
+        "key": "caller",
+        "label": "Caller",
+        "emoji": "🔊",
+        "capacity": 1,
+        "required_role": "PP-Caller"
+      },
+      {
+        "key": "defesa",
+        "label": "Defesa",
+        "emoji": "🛡️",
+        "capacity": 2,
+        "required_role": "PP-Defesa"
+      },
+      {
+        "key": "flame",
+        "label": "Flame",
+        "emoji": "🔥",
+        "capacity": 2,
+        "required_role": "PP-Flame"
+      },
+      {
+        "key": "elefante",
+        "label": "Elefante",
+        "emoji": "🐘",
+        "capacity": 1,
+        "required_role": "PP-Elefante"
+      },
+      {
+        "key": "hwatcha",
+        "label": "Hwatcha",
+        "emoji": "💀",
+        "capacity": 1,
+        "required_role": "PP-Hwacha"
+      },
+      {
+        "key": "shai",
+        "label": "Shai",
+        "emoji": "🎵",
+        "capacity": 2,
+        "required_role": "PP-Shai"
+      },
+      {
+        "key": "ranged",
+        "label": "Ranged",
+        "emoji": "🏹",
+        "capacity": 4,
+        "required_role": "PP-Ranged"
+      },
+      {
+        "key": "ataque",
+        "label": "Ataque",
+        "emoji": "⚔️",
+        "capacity": 10,
+        "required_role": "PP-Ataque"
+      },
+      {
+        "key": "liao",
+        "label": "Lião",
+        "emoji": "🦁",
+        "capacity": 3,
+        "required_role": "PP-Especial"
+      }
+    ],
+    "roles": {
+      "caller": {
+        "active": [],
+        "waiting": []
+      },
+      "defesa": {
+        "active": [],
+        "waiting": []
+      },
+      "flame": {
+        "active": [],
+        "waiting": []
+      },
+      "elefante": {
+        "active": [],
+        "waiting": []
+      },
+      "hwatcha": {
+        "active": [],
+        "waiting": []
+      },
+      "shai": {
+        "active": [],
+        "waiting": []
+      },
+      "ranged": {
+        "active": [],
+        "waiting": []
+      },
+      "ataque": {
+        "active": [
+          "281811700531855360",
+          "226851138954199040",
+          "256979036994142208",
+          "326858905370230796",
+          "1097003017481506828",
+          "405403517633953793",
+          "281592653110444032"
+        ],
+        "waiting": []
+      },
+      "liao": {
+        "active": [
+          "211282011711733760"
+        ],
+        "waiting": []
+      }
+    },
+    "nao_vou": []
+  }
+}
