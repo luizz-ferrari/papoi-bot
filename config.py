@@ -26,25 +26,27 @@ bot usa o template correspondente.
 ROLE_TEMPLATES = {
     "25": [
         {"key": "caller", "label": "Caller", "emoji": "🔊", "capacity": 1, "required_role": "PP-Caller"},
-        {"key": "defesa", "label": "Defesa", "emoji": "🛡️", "capacity": 2, "required_role": "PP-Defesa"},
+        {"key": "defesa", "label": "Defesa", "emoji": "🛡️", "capacity": 1, "required_role": "PP-Defesa"},
         {"key": "flame", "label": "Flame", "emoji": "🔥", "capacity": 2, "required_role": "PP-Flame"},
         {"key": "elefante", "label": "Elefante", "emoji": "🐘", "capacity": 1, "required_role": "PP-Elefante"},
         {"key": "hwatcha", "label": "Hwatcha", "emoji": "💀", "capacity": 1, "required_role": "PP-Hwacha"},
         {"key": "shai", "label": "Shai", "emoji": "🎵", "capacity": 2, "required_role": "PP-Shai"},
         {"key": "ranged", "label": "Ranged", "emoji": "🏹", "capacity": 4, "required_role": "PP-Ranged"},
-        {"key": "ataque", "label": "Ataque", "emoji": "⚔️", "capacity": 10, "required_role": "PP-Ataque"},
+        {"key": "ataque", "label": "Ataque", "emoji": "⚔️", "capacity": 8, "required_role": "PP-Ataque"},
         {"key": "liao", "label": "Lião", "emoji": "🦁", "capacity": 3, "required_role": "PP-Especial"},
+        {"key": "bomber", "label": "Bomber", "emoji": "💣", "capacity": 2, "required_role": "PP-Bomber"},
     ],
     "30": [
         {"key": "caller", "label": "Caller", "emoji": "🔊", "capacity": 1, "required_role": "PP-Caller"},
-        {"key": "defesa", "label": "Defesa", "emoji": "🛡️", "capacity": 2, "required_role": "PP-Defesa"},
+        {"key": "defesa", "label": "Defesa", "emoji": "🛡️", "capacity": 1, "required_role": "PP-Defesa"},
         {"key": "flame", "label": "Flame", "emoji": "🔥", "capacity": 2, "required_role": "PP-Flame"},
         {"key": "elefante", "label": "Elefante", "emoji": "🐘", "capacity": 1, "required_role": "PP-Elefante"},
         {"key": "hwatcha", "label": "Hwatcha", "emoji": "💀", "capacity": 1, "required_role": "PP-Hwacha"},
         {"key": "shai", "label": "Shai", "emoji": "🎵", "capacity": 2, "required_role": "PP-Shai"},
         {"key": "ranged", "label": "Ranged", "emoji": "🏹", "capacity": 5, "required_role": "PP-Ranged"},
-        {"key": "ataque", "label": "Ataque", "emoji": "⚔️", "capacity": 15, "required_role": "PP-Ataque"},
+        {"key": "ataque", "label": "Ataque", "emoji": "⚔️", "capacity": 12, "required_role": "PP-Ataque"},
         {"key": "liao", "label": "Lião", "emoji": "🦁", "capacity": 3, "required_role": "PP-Especial"},
+        {"key": "bomber", "label": "Bomber", "emoji": "💣", "capacity": 2, "required_role": "PP-Bomber"},
     ],
 }
 
