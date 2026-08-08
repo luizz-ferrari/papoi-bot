@@ -258,7 +258,7 @@ class EventView(discord.ui.View):
             row = idx // 5
             self.add_item(RoleButton(event_id, role, row))
 
-        nao_vou_row = max(0, (len(roles) - 1) // 5)
+        nao_vou_row = (len(roles) // 5)
         self.add_item(NaoVouButton(event_id, nao_vou_row))
 
         util_row = min(nao_vou_row + 1, 4)
