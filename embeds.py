@@ -15,7 +15,6 @@ def build_embed(event: dict) -> discord.Embed:
     )
 
     embed.add_field(name="Início", value=event["start"], inline=True)
-    embed.add_field(name="Fechamento", value=event["rsvp_close"], inline=True)
     embed.add_field(name="Organizador", value=event.get("creator_name", "—"), inline=True)
 
     total = logic.total_confirmed(event)

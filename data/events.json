@@ -124,5 +124,265 @@
       }
     },
     "nao_vou": []
+  },
+  "b0220a7f1d974b2fa6284aec1782a7c1": {
+    "guild_id": 976227383222882314,
+    "channel_id": 1536881887899820032,
+    "message_id": null,
+    "creator_id": "226851138954199040",
+    "creator_name": "Carrusso",
+    "title": "aa",
+    "description": "aaaaaa",
+    "start": "aaaa",
+    "rsvp_close": "aaaa",
+    "max_participants": 25,
+    "roles_config": [
+      {
+        "key": "caller",
+        "label": "Caller",
+        "emoji": "🔊",
+        "capacity": 1,
+        "required_role": "PP-Caller"
+      },
+      {
+        "key": "defesa",
+        "label": "Defesa",
+        "emoji": "🛡️",
+        "capacity": 1,
+        "required_role": "PP-Defesa"
+      },
+      {
+        "key": "flame",
+        "label": "Flame",
+        "emoji": "🔥",
+        "capacity": 2,
+        "required_role": "PP-Flame"
+      },
+      {
+        "key": "elefante",
+        "label": "Elefante",
+        "emoji": "🐘",
+        "capacity": 1,
+        "required_role": "PP-Elefante"
+      },
+      {
+        "key": "hwatcha",
+        "label": "Hwatcha",
+        "emoji": "💀",
+        "capacity": 1,
+        "required_role": "PP-Hwacha"
+      },
+      {
+        "key": "shai",
+        "label": "Shai",
+        "emoji": "🎵",
+        "capacity": 2,
+        "required_role": "PP-Shai"
+      },
+      {
+        "key": "ranged",
+        "label": "Ranged",
+        "emoji": "🏹",
+        "capacity": 4,
+        "required_role": "PP-Ranged"
+      },
+      {
+        "key": "ataque",
+        "label": "Ataque",
+        "emoji": "⚔️",
+        "capacity": 8,
+        "required_role": "PP-Ataque"
+      },
+      {
+        "key": "liao",
+        "label": "Lião",
+        "emoji": "🦁",
+        "capacity": 3,
+        "required_role": "PP-Especial"
+      },
+      {
+        "key": "bomber",
+        "label": "Bomber",
+        "emoji": "💣",
+        "capacity": 2,
+        "required_role": "PP-Bomber"
+      }
+    ],
+    "roles": {
+      "caller": {
+        "active": [],
+        "waiting": []
+      },
+      "defesa": {
+        "active": [],
+        "waiting": []
+      },
+      "flame": {
+        "active": [],
+        "waiting": []
+      },
+      "elefante": {
+        "active": [],
+        "waiting": []
+      },
+      "hwatcha": {
+        "active": [],
+        "waiting": []
+      },
+      "shai": {
+        "active": [],
+        "waiting": []
+      },
+      "ranged": {
+        "active": [],
+        "waiting": []
+      },
+      "ataque": {
+        "active": [],
+        "waiting": []
+      },
+      "liao": {
+        "active": [],
+        "waiting": []
+      },
+      "bomber": {
+        "active": [],
+        "waiting": []
+      }
+    },
+    "nao_vou": [],
+    "created_at": "2026-08-11T23:50:50.700339+00:00",
+    "publish_at": null,
+    "published": true
+  },
+  "9a007fbd112049c1a3cab67fc78d8569": {
+    "guild_id": 976227383222882314,
+    "channel_id": 1536881887899820032,
+    "message_id": null,
+    "creator_id": "226851138954199040",
+    "creator_name": "Carrusso",
+    "title": "aa",
+    "description": "aaaaaa",
+    "start": "aaaa",
+    "rsvp_close": "aaaa",
+    "max_participants": 25,
+    "roles_config": [
+      {
+        "key": "caller",
+        "label": "Caller",
+        "emoji": "🔊",
+        "capacity": 1,
+        "required_role": "PP-Caller"
+      },
+      {
+        "key": "defesa",
+        "label": "Defesa",
+        "emoji": "🛡️",
+        "capacity": 1,
+        "required_role": "PP-Defesa"
+      },
+      {
+        "key": "flame",
+        "label": "Flame",
+        "emoji": "🔥",
+        "capacity": 2,
+        "required_role": "PP-Flame"
+      },
+      {
+        "key": "elefante",
+        "label": "Elefante",
+        "emoji": "🐘",
+        "capacity": 1,
+        "required_role": "PP-Elefante"
+      },
+      {
+        "key": "hwatcha",
+        "label": "Hwatcha",
+        "emoji": "💀",
+        "capacity": 1,
+        "required_role": "PP-Hwacha"
+      },
+      {
+        "key": "shai",
+        "label": "Shai",
+        "emoji": "🎵",
+        "capacity": 2,
+        "required_role": "PP-Shai"
+      },
+      {
+        "key": "ranged",
+        "label": "Ranged",
+        "emoji": "🏹",
+        "capacity": 4,
+        "required_role": "PP-Ranged"
+      },
+      {
+        "key": "ataque",
+        "label": "Ataque",
+        "emoji": "⚔️",
+        "capacity": 8,
+        "required_role": "PP-Ataque"
+      },
+      {
+        "key": "liao",
+        "label": "Lião",
+        "emoji": "🦁",
+        "capacity": 3,
+        "required_role": "PP-Especial"
+      },
+      {
+        "key": "bomber",
+        "label": "Bomber",
+        "emoji": "💣",
+        "capacity": 2,
+        "required_role": "PP-Bomber"
+      }
+    ],
+    "roles": {
+      "caller": {
+        "active": [],
+        "waiting": []
+      },
+      "defesa": {
+        "active": [],
+        "waiting": []
+      },
+      "flame": {
+        "active": [],
+        "waiting": []
+      },
+      "elefante": {
+        "active": [],
+        "waiting": []
+      },
+      "hwatcha": {
+        "active": [],
+        "waiting": []
+      },
+      "shai": {
+        "active": [],
+        "waiting": []
+      },
+      "ranged": {
+        "active": [],
+        "waiting": []
+      },
+      "ataque": {
+        "active": [],
+        "waiting": []
+      },
+      "liao": {
+        "active": [],
+        "waiting": []
+      },
+      "bomber": {
+        "active": [],
+        "waiting": []
+      }
+    },
+    "nao_vou": [],
+    "created_at": "2026-08-11T23:50:56.433886+00:00",
+    "publish_at": null,
+    "published": true
   }
 }

@@ -7,6 +7,7 @@ mas é suficiente para um bot de inscrições de um servidor/comunidade
 e sobrevive a reinícios do bot.
 """
 
+import datetime as dt
 import json
 import os
 from threading import Lock
@@ -67,3 +68,36 @@ def delete_event(event_id):
         if event_id in _cache:
             del _cache[event_id]
             _persist()
+
+
+def purge_old_events(max_age_days):
+    """
+    Remove eventos criados há mais de `max_age_days` dias (independente de
+    já terem sido publicados ou não) — evita que eventos esquecidos/nunca
+    concluídos fiquem acumulando para sempre.
+
+    Eventos sem "created_at" (criados por uma versão antiga do bot) não são
+    removidos automaticamente, por segurança.
+
+    Retorna a lista de (event_id, event_data) que foram removidos, para que
+    quem chamou possa, por exemplo, tentar apagar a mensagem no Discord.
+    """
+    with _lock:
+        _ensure_loaded()
+        cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=max_age_days)
+        removed = []
+        for event_id in list(_cache.keys()):
+            event = _cache[event_id]
+            created_at = event.get("created_at")
+            if not created_at:
+                continue
+            try:
+                created_dt = dt.datetime.fromisoformat(created_at)
+            except ValueError:
+                continue
+            if created_dt <= cutoff:
+                removed.append((event_id, json.loads(json.dumps(event))))
+                del _cache[event_id]
+        if removed:
+            _persist()
+        return removed

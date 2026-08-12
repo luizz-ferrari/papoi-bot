@@ -24,16 +24,16 @@ class NodewarBot(commands.Bot):
     async def setup_hook(self):
         await self.load_extension("cogs.events")
 
-        # Re-registra as views persistentes de eventos já existentes
+        # Re-registra as views persistentes de eventos já publicados
         # (necessário para os botões continuarem funcionando após reiniciar o bot).
+        # Eventos ainda não publicados (agendados) recebem sua view quando a
+        # tarefa de publicação automática os posta.
         events = storage.load_all()
         for event_id, event in events.items():
-            view = EventView(event_id)
             message_id = event.get("message_id")
             if message_id:
+                view = EventView(event_id)
                 self.add_view(view, message_id=message_id)
-            else:
-                self.add_view(view)
 
         await self.tree.sync()
 

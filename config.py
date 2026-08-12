@@ -56,6 +56,16 @@ DEFAULT_ROLES = ROLE_TEMPLATES["25"]
 # Nome EXATO do cargo do Discord que pode usar /evento criar e /evento deletar
 # (além de quem tem permissão "Gerenciar Servidor"/"Gerenciar Eventos").
 # A comparação ignora maiúsculas/minúsculas.
-STAFF_ROLE_NAME = "STAFF"
+STAFF_ROLE_NAME = "Staff"
+
+# Fuso horário usado para interpretar o campo "Agendar publicação" do
+# formulário de criação de evento (ex: "America/Sao_Paulo", "America/Manaus").
+TIMEZONE = "America/Sao_Paulo"
+
+# Por quantos dias os dados ficam guardados antes de serem apagados
+# automaticamente: eventos criados há mais tempo que isso (mesmo que nunca
+# tenham sido concluídos/deletados manualmente) e linhas do histórico em
+# Excel mais antigas que isso. Ajuste esse número livremente.
+DATA_RETENTION_DAYS = 15
 
 EMBED_COLOR = 0x5865F2

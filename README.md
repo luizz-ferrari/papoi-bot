@@ -11,6 +11,25 @@ Ataque 500k+), botões para cada função, fila de espera automática e botão
 - `/evento criar tamanho:25|30` abre um formulário para criar o evento
   (título, descrição, início, fechamento do RSVP). O tamanho escolhido define
   automaticamente o limite de vagas de cada cargo (ver `config.py`).
+- O formulário tem um campo opcional **"Agendar publicação"**: se
+  preenchido (formato `DD/MM/AAAA HH:MM`), o bot guarda o evento e publica
+  automaticamente no horário escolhido, em vez de postar na hora. Se ficar
+  vazio, publica imediatamente como antes.
+- Quem é promovido da fila de espera para uma função (porque alguém saiu)
+  recebe uma **mensagem privada (DM)** avisando.
+- Botão **Evento Concluído** ✅ encerra o evento, registra tudo (quem fez
+  cada função, quem faltou, datas, organizador) em uma **planilha Excel**
+  (`data/historico_eventos.xlsx`) e remove os botões de inscrição da
+  mensagem. Use `/evento historico` para baixar a planilha a qualquer
+  momento.
+- **Limpeza automática de dados**: eventos esquecidos (nunca concluídos ou
+  deletados) e linhas antigas do histórico em Excel são apagados
+  automaticamente depois de `DATA_RETENTION_DAYS` dias (padrão: 15),
+  para não acumular dados indefinidamente.
+- Apenas membros com o cargo do Discord definido em `STAFF_ROLE_NAME`
+  (`config.py`, padrão `"Staff"`) — ou com permissão "Gerenciar Servidor"/
+  "Gerenciar Eventos" — podem usar `/evento criar` (e também deletar
+  eventos de outras pessoas).
 - Cada função pode exigir que o membro tenha um **cargo específico do
   Discord** para se inscrever nela (configurável em `config.py`).
 - Um botão por função. Clicar inscreve o usuário; clicar de novo remove.
@@ -34,10 +53,12 @@ nodewar_bot/
 ├── embeds.py           # monta o embed do evento
 ├── logic.py            # regras de inscrição / fila de espera
 ├── storage.py          # persistência em JSON
+├── history.py          # histórico de eventos concluídos (Excel)
 ├── cogs/
-│   └── events.py        # botões, modal e comando /evento criar
+│   └── events.py        # botões, modal e comandos /evento criar|historico
 ├── data/
-│   └── events.json      # criado automaticamente
+│   ├── events.json               # criado automaticamente
+│   └── historico_eventos.xlsx    # criado automaticamente
 ├── requirements.txt
 └── .env.example
 ```
@@ -93,6 +114,91 @@ testes rápidos você pode sincronizar os comandos apenas no seu servidor
 3. O bot posta o embed com todos os botões de função.
 4. Cada membro clica na função desejada para se inscrever. Clicar de novo
    remove a inscrição.
+
+## Retenção de dados (limpeza automática)
+
+Para não acumular dados para sempre, uma tarefa roda uma vez por dia e
+apaga automaticamente:
+
+- **Eventos esquecidos**: criados há mais de `DATA_RETENTION_DAYS` dias e
+  que nunca foram concluídos (botão ✅) nem deletados manualmente. O bot
+  também tenta apagar a mensagem correspondente no Discord.
+- **Linhas antigas do histórico em Excel**: linhas cuja "Data de conclusão"
+  passou de `DATA_RETENTION_DAYS` dias.
+
+Isso é só uma rede de segurança contra eventos abandonados — eventos
+concluídos ou deletados normalmente já saem do armazenamento ativo na
+hora. Ajuste o prazo em `config.py`:
+
+```python
+DATA_RETENTION_DAYS = 15
+```
+
+## Histórico de eventos concluídos (Excel)
+
+Quando alguém com permissão clica no botão **✅ Evento Concluído**:
+
+1. O bot resolve os nomes de todos os participantes de cada função e de
+   quem marcou "não vou".
+2. Adiciona uma linha na planilha `data/historico_eventos.xlsx` (criada
+   automaticamente na primeira vez), com colunas: data de conclusão,
+   título, descrição, tamanho, início, fechamento do RSVP, organizador,
+   quem concluiu, total confirmados, uma coluna por função (com os nomes
+   separados por vírgula) e uma coluna "Não vou".
+3. A mensagem do evento no Discord vira só um registro estático (sem
+   botões), com "✅ ... — Concluído" no título.
+4. O evento é removido da lista de eventos ativos.
+
+Para baixar a planilha a qualquer momento, use `/evento historico`
+(também restrito ao cargo Staff). O bot reenvia o arquivo atualizado como
+anexo.
+
+Quem pode marcar um evento como concluído é o mesmo grupo que pode deletar
+eventos: quem criou o evento, ou quem tem o cargo Staff / permissão
+"Gerenciar Servidor"/"Gerenciar Eventos".
+
+## Agendar a publicação de um evento
+
+No formulário do `/evento criar`, o campo **"Agendar publicação"** é
+opcional. Preencha no formato `DD/MM/AAAA HH:MM`, por exemplo:
+
+```
+19/07/2026 20:00
+```
+
+O bot não posta nada na hora — ele guarda o evento e, quando chega o
+horário escolhido, publica automaticamente no mesmo canal onde o comando foi
+usado (uma tarefa em segundo plano confere isso a cada 30 segundos). Você
+recebe uma confirmação privada com a data/hora agendada assim que envia o
+formulário.
+
+Se deixar o campo vazio, o evento é publicado imediatamente, como antes.
+
+O horário digitado é interpretado usando o fuso definido em `config.py`:
+
+```python
+TIMEZONE = "America/Sao_Paulo"
+```
+
+Troque para o fuso do seu servidor se for diferente (ex: `"America/Manaus"`,
+`"America/Belem"`). No Windows, é necessário instalar o pacote `tzdata`
+(já incluso em `requirements.txt`) para o fuso horário funcionar
+corretamente — sem ele, o Python não encontra a base de dados de fusos.
+
+## Quem pode criar e deletar eventos (cargo Staff)
+
+Em `config.py`, `STAFF_ROLE_NAME` define o nome exato do cargo do Discord
+que pode usar `/evento criar` e deletar eventos de outras pessoas:
+
+```python
+STAFF_ROLE_NAME = "Staff"
+```
+
+Troque `"Staff"` pelo nome exato de um cargo já existente no seu servidor
+(Configurações do Servidor > Cargos). Quem tiver esse cargo — ou a permissão
+do Discord "Gerenciar Servidor"/"Gerenciar Eventos" — pode criar eventos.
+Quem criou um evento também pode deletar esse evento específico, mesmo sem
+o cargo Staff.
 
 ## Exigir um cargo do Discord para cada função
 

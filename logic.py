@@ -34,93 +34,67 @@ def find_user_location(event, user_id):
 
 def remove_user(event, user_id):
     """
-    Remove o usuário de qualquer função/fila/"não vou".
-
-    Retorna:
-        (user_id_promovido, role_key) caso alguém seja promovido;
-        None caso nenhuma promoção aconteça.
+    Remove o usuário de qualquer função/fila/"não vou" em que esteja.
+    Retorna uma lista de tuplas (role_key, promoted_user_id) para cada
+    pessoa que foi promovida da fila de espera para a lista ativa como
+    consequência dessa remoção.
     """
     uid = str(user_id)
-    promotion = None
-
+    promotions = []
     for role_key, rd in event["roles"].items():
         if uid in rd["active"]:
             rd["active"].remove(uid)
-
             if rd["waiting"]:
-                promoted = rd["waiting"].pop(0)
-                rd["active"].append(promoted)
-                promotion = (promoted, role_key)
-
+                promoted_uid = rd["waiting"].pop(0)
+                rd["active"].append(promoted_uid)
+                promotions.append((role_key, promoted_uid))
         elif uid in rd["waiting"]:
             rd["waiting"].remove(uid)
-
     if uid in event.get("nao_vou", []):
         event["nao_vou"].remove(uid)
-
-    return promotion
+    return promotions
 
 
 def toggle_role(event, user_id, role_key):
     """
-    Alterna a inscrição do usuário na função.
-
-    Retorna:
-        (resultado, promotion)
-
-    promotion será:
-        (user_id_promovido, role_key)
-    ou:
-        None
+    Alterna a inscrição do usuário na função `role_key`.
+    Retorna (resultado, promocoes):
+    - resultado: "removed" | "joined_active" | "joined_waiting"
+    - promocoes: lista de (role_key, promoted_user_id) — quem subiu da fila
+      de espera por causa dessa ação
     """
     uid = str(user_id)
     loc = find_user_location(event, user_id)
 
-    if (
-        loc is not None
-        and loc[0] in ("active", "waiting")
-        and loc[1] == role_key
-    ):
-        promotion = remove_user(event, user_id)
-        return "removed", promotion
+    if loc is not None and loc[0] in ("active", "waiting") and loc[1] == role_key:
+        promotions = remove_user(event, user_id)
+        return "removed", promotions
 
-    # Se estava em outra função, pode abrir vaga nela e promover alguém.
-    promotion = remove_user(event, user_id)
-
-    rd = event["roles"].setdefault(
-        role_key,
-        {"active": [], "waiting": []},
-    )
+    promotions = remove_user(event, user_id)
+    rd = event["roles"].setdefault(role_key, {"active": [], "waiting": []})
     cap = get_roles_dict(event)[role_key]["capacity"]
 
     if len(rd["active"]) < cap:
         rd["active"].append(uid)
-        return "joined_active", promotion
+        return "joined_active", promotions
 
     if uid not in rd["waiting"]:
         rd["waiting"].append(uid)
-
-    return "joined_waiting", promotion
+    return "joined_waiting", promotions
 
 
 def toggle_nao_vou(event, user_id):
-    """
-    Alterna o status "não vou".
-
-    Retorna:
-        (resultado, promotion)
-    """
+    """Alterna o status "não vou" do usuário. Retorna (resultado, promocoes)."""
     uid = str(user_id)
     loc = find_user_location(event, user_id)
 
     if loc is not None and loc[0] == "nao_vou":
         event["nao_vou"].remove(uid)
-        return "removed", None
+        return "removed", []
 
-    promotion = remove_user(event, user_id)
+    promotions = remove_user(event, user_id)
     event.setdefault("nao_vou", []).append(uid)
-
-    return "joined", promotion
+    return "joined", promotions
 
 
 def total_confirmed(event):
