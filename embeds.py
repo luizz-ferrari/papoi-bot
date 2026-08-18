@@ -14,7 +14,6 @@ def build_embed(event: dict) -> discord.Embed:
         color=config.EMBED_COLOR,
     )
 
-    embed.add_field(name="Início", value=event["start"], inline=True)
     embed.add_field(name="Organizador", value=event.get("creator_name", "—"), inline=True)
 
     total = logic.total_confirmed(event)

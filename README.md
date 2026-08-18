@@ -9,8 +9,8 @@ Ataque 500k+), botões para cada função, fila de espera automática e botão
 ## Funcionalidades
 
 - `/evento criar tamanho:25|30` abre um formulário para criar o evento
-  (título, descrição, início, fechamento do RSVP). O tamanho escolhido define
-  automaticamente o limite de vagas de cada cargo (ver `config.py`).
+  (título, descrição). O tamanho escolhido define automaticamente o limite
+  de vagas de cada cargo (ver `config.py`).
 - O formulário tem um campo opcional **"Agendar publicação"**: se
   preenchido (formato `DD/MM/AAAA HH:MM`), o bot guarda o evento e publica
   automaticamente no horário escolhido, em vez de postar na hora. Se ficar

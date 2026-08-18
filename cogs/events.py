@@ -344,11 +344,6 @@ class CreateEventModal(discord.ui.Modal):
         max_length=200,
         style=discord.TextStyle.paragraph,
     )
-    inicio = discord.ui.TextInput(
-        label="Início",
-        placeholder="Ex: 2026-07-19 21:00 GMT-3",
-        max_length=50,
-    )
     agendar_para = discord.ui.TextInput(
         label="Agendar publicação (opcional)",
         placeholder="DD/MM/AAAA HH:MM — deixe vazio para publicar agora",
@@ -400,7 +395,6 @@ class CreateEventModal(discord.ui.Modal):
             "creator_name": interaction.user.display_name,
             "title": str(self.titulo.value),
             "description": str(self.descricao.value) if self.descricao.value else "",
-            "start": str(self.inicio.value),
             "max_participants": max_p,
             "roles_config": roles_config,
             "roles": {r["key"]: {"active": [], "waiting": []} for r in roles_config},
